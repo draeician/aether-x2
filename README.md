@@ -140,8 +140,8 @@ This compiles llama.cpp (Vulkan backend) inside the image.
 ```bash
 docker run --rm -it \
   --device=/dev/dri \
-  --group-add $(getent group render | cut -d: -f3) \
-  --group-add $(getent group video | cut -d: -f3) \
+  --group-add "$(getent group render | cut -d: -f3)" \
+  --group-add "$(getent group video  | cut -d: -f3)" \
   llama-vk:arch \
   bash -lc 'ls -l /usr/share/vulkan/icd.d/*radeon* ; env -u DISPLAY -u WAYLAND_DISPLAY vulkaninfo --summary | head -n 60'
 ```
