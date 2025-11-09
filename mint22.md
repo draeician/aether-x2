@@ -64,3 +64,28 @@ Environment="OLLAMA_NUM_PARALLEL=4"
 # Environment="OLLAMA_MODELS=/media/elysium/models/ollama_models"
 EOF_CB_6633DE28
 ```
+
+
+# podman
+
+sudo apt install podman
+podman --version
+podman run -it --rm \
+  --device=/dev/kfd \
+  --device=/dev/dri \
+  --group-add keep-groups \
+  docker.io/rocm/rocm-terminal \
+  rocminfo
+
+# keep from sleeping
+- modify sleep habits with: sudo vi /etc/systemd/logind.conf
+```
+#HandleSuspendKey=suspend
+HandleSuspendKey=ignore
+
+#HandleSleepKey=suspend
+HandleSleepKey=ignore
+
+#HandleLidSwitch=suspend
+HandleLidSwitch=ignore
+```
