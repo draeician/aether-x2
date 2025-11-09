@@ -15,3 +15,52 @@ sudo apt install python3-setuptools python3-wheel
    84  sudo apt install python3-setuptools python3-wheel
    85  sudo apt install environment-modules
    87  apt install rocm-smi rocminfo
+
+
+```
+#!/usr/bin/env bash
+mkdir -p "$(dirname -- '/etc/systemd/system/ollama.service')"
+cat > '/etc/systemd/system/ollama.service' << 'EOF_CB_0D2B6FB8'
+[Unit]
+Description=Ollama Service
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/ollama serve
+User=ollama
+Group=ollama
+Restart=always
+RestartSec=3
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
+[Install]
+WantedBy=default.target
+EOF_CB_0D2B6FB8
+
+mkdir -p "$(dirname -- '/etc/systemd/system/ollama.service.d/ollama.conf')"
+cat > '/etc/systemd/system/ollama.service.d/ollama.conf' << 'EOF_CB_6633DE28'
+# Prep: 
+# mkdir -p /etc/systemd/system/ollama.service.d
+# [Service]
+# Conditionally include EnvironmentFile directive
+# EnvironmentFile=/etc/default/ollama
+#
+# systemctl daemon-reload
+# systemctl restart ollama
+# 
+# OLLAMA_MODELS=/media/elysium/models/ollama_models
+# OLLAMA_HOST=0.0.0.0:11434
+# OLLAMA_ORIGINS=*
+# OLLAMA_MAX_LOADED_MODEL=3
+# OLLAMA_NUM_PARALLEL=6
+
+#OLLAMA_MODELS=/media/elysium/models/ollama_models
+OLLAMA_HOST=0.0.0.0:11434
+OLLAMA_ORIGINS=*
+OLLAMA_MAX_LOADED_MODEL=2
+OLLAMA_NUM_PARALLEL=4
+
+#[Service]
+#EnvironmentFile=/etc/default/ollama
+EOF_CB_6633DE28
+```
