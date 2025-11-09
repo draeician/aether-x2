@@ -11,3 +11,7 @@ ollama pull gpt-oss:20b
 
 
 wget https://repo.radeon.com/amdgpu-install/7.1/ubuntu/noble/amdgpu-install_7.1.70100-1_all.deb
+sudo apt install python3-setuptools python3-wheel
+   84  sudo apt install python3-setuptools python3-wheel
+   85  sudo apt install environment-modules
+   87  apt install rocm-smi rocminfo
