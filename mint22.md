@@ -54,13 +54,13 @@ cat > '/etc/systemd/system/ollama.service.d/ollama.conf' << 'EOF_CB_6633DE28'
 # OLLAMA_MAX_LOADED_MODEL=3
 # OLLAMA_NUM_PARALLEL=6
 
-#OLLAMA_MODELS=/media/elysium/models/ollama_models
-OLLAMA_HOST=0.0.0.0:11434
-OLLAMA_ORIGINS=*
-OLLAMA_MAX_LOADED_MODEL=2
-OLLAMA_NUM_PARALLEL=4
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0:11434"
+Environment="OLLAMA_ORIGINS=*"
+Environment="OLLAMA_MAX_LOADED_MODEL=2"
+Environment="OLLAMA_NUM_PARALLEL=4"
 
-#[Service]
-#EnvironmentFile=/etc/default/ollama
+# If you want to add your models path, uncomment the line below
+# Environment="OLLAMA_MODELS=/media/elysium/models/ollama_models"
 EOF_CB_6633DE28
 ```
