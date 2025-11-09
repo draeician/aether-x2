@@ -89,3 +89,38 @@ HandleSleepKey=ignore
 #HandleLidSwitch=suspend
 HandleLidSwitch=ignore
 ```
+# setup wired and wireless network in the house
+```
+# Set the static IP and subnet
+sudo nmcli connection modify "Wired connection 1" ipv4.address 192.168.22.53/24
+
+# Set the gateway
+sudo nmcli connection modify "Wired connection 1" ipv4.gateway 192.168.22.1
+
+# Set the DNS
+sudo nmcli connection modify "Wired connection 1" ipv4.dns "192.168.22.1"
+
+# Set the DNS search domain (THIS IS THE CORRECTED LINE)
+sudo nmcli connection modify "Wired connection 1" ipv4.dns-search "draeician.com"
+
+# Change the method to manual
+sudo nmcli connection modify "Wired connection 1" ipv4.method manual
+
+# Set the static IP and subnet
+sudo nmcli connection modify "falgout-g" ipv4.address 192.168.22.53/24
+
+# Set the gateway
+sudo nmcli connection modify "falgout-g" ipv4.gateway 192.168.22.1
+
+# Set the DNS
+sudo nmcli connection modify "falgout-g" ipv4.dns "192.168.22.1"
+
+# Set the DNS search domain (THIS IS THE CORRECTED LINE)
+sudo nmcli connection modify "falgout-g" ipv4.dns-search "draeician.com"
+
+# Change the method to manual
+sudo nmcli connection modify "falgout-g" ipv4.method manual
+
+sudo systemctl restart NetworkManager
+```
+
